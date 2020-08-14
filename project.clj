@@ -13,7 +13,7 @@
   :jvm-opts ["-server" "-Xmx4g" "-Xms2g" "-XX:+UseParallelGC"]
   :lein-release {:scm :git
                  :deploy-via :clojars}
-  :profiles {:dev  {:dependencies [[org.clojure/clojure "1.8.0"]]}
+  :profiles {:dev  {:dependencies [[org.clojure/clojure "1.10.1"]]}
              :test {:dependencies [[criterium "0.4.4"]
                                    [org.clojure/data.priority-map "0.0.7"]]}}
   :test-selectors {:default (fn [m] (not (:benchmark m)))

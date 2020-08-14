@@ -9,14 +9,10 @@
 
 (defn- to-seq
   "Helper function to convert the priority->elements into a seq."
-  [sorted-priorities priority->elements]
-  (loop [result-vector []
-         [priority & remaining-priorities] sorted-priorities]
-    (if priority
-      (recur
-        (concat result-vector (priority->elements priority))
-        remaining-priorities)
-      (seq result-vector))))
+  [[priority & remaining-priorities] priority->elements]
+  (when priority
+    (lazy-cat (priority->elements priority)
+              (to-seq remaining-priorities priority->elements))))
 
 (defprotocol Bufferable
   (insert-into [elements element] "Inserts an element into the elements buffer.")
@@ -57,7 +53,7 @@
   [element->priority seed-value ^int num-elements priority->elements]
 
   Seqable
-  (seq [_] (to-seq (-> priority->elements keys vec) priority->elements))
+  (seq [_] (to-seq (keys priority->elements) priority->elements))
 
   ISeq
   (first [this] (.peek this))
