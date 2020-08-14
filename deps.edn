@@ -1,0 +1,8 @@
+{:aliases
+   {:dev {:extra-deps #:org.clojure{clojure #:mvn{:version "1.10.1"}}},
+    :run {:jvm-opts ["-server" "-Xmx4g" "-Xms2g" "-XX:+UseParallelGC"]},
+    :test {:extra-deps {criterium #:mvn{:version "0.4.4"},
+                        org.clojure/data.priority-map #:mvn{:version "0.0.7"},
+                        org.clojure/test.check #:mvn{:version "RELEASE"}},
+           :extra-paths ["test"]}},
+ :deps {}}
